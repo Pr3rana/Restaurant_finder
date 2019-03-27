@@ -45,13 +45,11 @@ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
   var frm = $('#signupform');
 
     frm.submit(function (e) {
-        console.log("hello");
 
         e.preventDefault();
-
         $.ajax({
             type: frm.attr('method'),
-            url: frm.attr('action'),
+            url: '/api/signup',
             data: frm.serialize(),
             success: function (data) {
                 console.log('Submission was successful.');

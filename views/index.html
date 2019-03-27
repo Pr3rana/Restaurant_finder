@@ -20,21 +20,21 @@
                 <div id="signup">   
                 <h1>Sign Up for Free</h1>
                 
-                <form id="signupform" action="/" method="post">
+                <form id="signupform" method="post">
                 
                 <div class="top-row">
                     <div class="field-wrap">
                     <label>
                         First Name<span class="req">*</span>
                     </label>
-                    <input type="text" required autocomplete="off" />
+                    <input name="FirstName" type="text" required autocomplete="off" />
                     </div>
                 
                     <div class="field-wrap">
                     <label>
                         Last Name<span class="req">*</span>
                     </label>
-                    <input type="text"required autocomplete="off"/>
+                    <input name="LastName" type="text"required autocomplete="off"/>
                     </div>
                 </div>
         
@@ -42,14 +42,14 @@
                     <label>
                     Email Address<span class="req">*</span>
                     </label>
-                    <input type="email"required autocomplete="off"/>
+                    <input name="EmailAddress" type="email"required autocomplete="off"/>
                 </div>
                 
                 <div class="field-wrap">
                     <label>
                     Set A Password<span class="req">*</span>
                     </label>
-                    <input type="password"required autocomplete="off"/>
+                    <input name="Password" type="password"required autocomplete="off"/>
                 </div>
                 
                 <button type="submit" class="button button-block"/>Get Started</button>
@@ -89,6 +89,6 @@
                 
         </div> <!-- /form -->
     </main>
-    <script src="public/javascripts/index.js"></script>
+    <script src="public/javascripts/main.js"></script>
 </body>
 </html>
