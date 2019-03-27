@@ -49,10 +49,11 @@ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
   function getInput(e) {
     //console.log(e.currentTarget.attr('method'),"e");
+    
     e.preventDefault();
     $.ajax({
-        type: e.target.attr('method'),
-        url: e.target.attr('actons'),
+        type: $(e.target).attr('method'),
+        url: $(e.target).attr('action'),
         data: e.target.serialize(),
         success: function (data) {
             console.log('Submission was successful.');

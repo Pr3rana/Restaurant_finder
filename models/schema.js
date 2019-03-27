@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 require('mongoose-type-email');
 
 // create ninja Schema & model
-const signupSchema = new mongoose.Schema({
+const usersSchema = new mongoose.Schema({
     FirstName: {
         type: String,
         required: [true, 'Name field is required']
@@ -22,6 +22,6 @@ const signupSchema = new mongoose.Schema({
     // add in geo location
 });
 
-const data = mongoose.model('zomato_signup_details', signupSchema);
+const data = mongoose.model('zomato_signup_details', usersSchema);
 
 module.exports = data;
