@@ -49,7 +49,6 @@ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
   function getInput(e) {
     //console.log(e.currentTarget.attr('method'),"e");
-    
     e.preventDefault();
     $.ajax({
         type: $(e.target).attr('method'),
