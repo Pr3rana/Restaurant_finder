@@ -14,7 +14,9 @@
   <link href="/javascripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="/stylesheets/page.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="/stylesheets/restaurant.css" rel="stylesheet">
+
 
 
 </head>
@@ -84,20 +86,40 @@
                     <div class="col-md-6">
                     <div class="well well-sm">
                         <div>
-                            <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
+                            <a class="btn btn-success btn-green" href="#" id="open-review-box">Leave a Review</a>
                         </div>
                     
                         <div class="row" id="post-review-box" style="display:none;">
                             <div class="col-md-12">
-                                <form id="saveReview" accept-charset="UTF-8" action="" method="post">
+                                <form class="reviewContent" action="/users/reviews" method="post">
                                     <input id="ratings-hidden" name="rating" type="hidden"> 
                                     <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
                     
                                     <div class="text-right">
-                                        <div class="stars starrr" data-rating="0"></div>
+                                        <div>
+                                            <div class="form-group" id="rating-ability-wrapper">
+                                                <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
+                                                </label>
+                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="1" id="rating-star-1">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="2" id="rating-star-2">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="3" id="rating-star-3">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="4" id="rating-star-4">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="5" id="rating-star-5">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
                                         <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
                                         <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                                        <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                        <button id="submit" class="btn btn-success btn-lg" type="submit" onclick="fireSubmit">Save</button>
                                     </div>
                                 </form>
                             </div>
@@ -131,7 +153,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/javascripts/jquery/jquery-3.3.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="/javascripts/page.js"></script>
+  <script src="/javascripts/restaurant.js"></script>
 
 </body>
 

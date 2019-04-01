@@ -34,37 +34,42 @@ $(function(){
     closeReviewBtn.hide();
     
   });
-
-  $('.starrr').on('starrr:change', function(e, value){
-    ratingsField.val(value);
-  });
 });
 
-var reviewContent = $('#saveReview');
-reviewContent.submit(submitReview);
-function submitReview(submitReview) {
-    //console.log(e.currentTarget.attr('method'),"e");
-    e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url: '/users/review',
-        data: e.target.serialize(),
-        success: function (data) {
-            console.log('Submission was successful.');
-            console.log(data);
-        },
-        error: function (data) {
-            console.log('An error occurred.');
-            console.log(data);
-        },
-    });
-}
+jQuery(document).ready(function($){
+	    
+	$(".btnrating").on('click',(function(e) {
+	
+	var previous_value = $("#selected_rating").val();
+	
+	var selected_value = $(this).attr("data-attr");
+	$("#selected_rating").val(selected_value);
+	
+	$(".selected-rating").empty();
+	$(".selected-rating").html(selected_value);
+	
+	for (i = 1; i <= selected_value; ++i) {
+	$("#rating-star-"+i).toggleClass('btn-warning');
+	$("#rating-star-"+i).toggleClass('btn-default');
+	}
+	
+	for (ix = 1; ix <= previous_value; ++ix) {
+	$("#rating-star-"+ix).toggleClass('btn-warning');
+	$("#rating-star-"+ix).toggleClass('btn-default');
+	}
+	
+	}));
+	
+		
+});
+
+
 renderDetails(myVar);
 function renderDetails(data) {
-    console.log(data);
     var listContainer = document.getElementById('restaurentDetails');
     var imgContainer = document.getElementById('1stImage');
     var rName = document.getElementById('shopName');
+    let reviewForm = document.getElementsByClassName('reviewContent');
     listContainer.innerHTML = "";
     let name = data.name;
     let url = data.url;
@@ -75,9 +80,10 @@ function renderDetails(data) {
     let altUrl = 'https://b.zmtcdn.com/data/pictures/chains/8/54148/a2bff39a00aaaa5a111012ba90d69331.jpg?output-format=webp';
     let id = data.id;
     imgContainer.setAttribute("src",img+'900x350');
+    reviewForm[0].setAttribute("id",id);
     rName.innerHTML = name;
     // console.log("img",img);
-    var item = '<div class="col-lg-4 col-md-6 mb-4">'+
+    var item = '<div class="col-lg col-md mb details">'+
     '            <div class="card">'+
     '              <div class="card-body">'+
     '                <h4 class="card-title">'+
@@ -94,4 +100,27 @@ function renderDetails(data) {
     '          </div>';
     
     listContainer.insertAdjacentHTML('afterbegin',item);
+}
+function fireSubmit(){
+  let reviewContent = document.getElementsByClassName('reviewContent');
+  let id = reviewContent.getAttribute("id");
+  reviewContent[0].submit(submitReview(id));
+}
+
+function submitReview(id) {
+    // console.log("error");
+    // e.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: '/users/reviews',
+        data: {id:{"user":comment}},
+        success: function (data) {
+            console.log('Submission was successful.');
+            console.log(data);
+        },
+        error: function (data) {
+            console.log('An error occurred.');
+            console.log(data);
+        },
+    });
 }

@@ -1,18 +1,14 @@
-var data;
-fetch('/users/signin.json').then(function(response) {
-    response.text().then(function(text) {
-        data = JSON.parse(text)
-        renderList(data);
-    });
-  });
+renderList(myVar);
 // console.log(data);
+//check in jade
+document.getElementById('userName').innerHTML = "Welcome "+userData.FirstName;
 function renderList(data){
     // console.log(data.restaurants[0].restaurant)
     
     var listContainer = document.getElementById('restaurentList');
     listContainer.innerHTML = "";
     for (let i = 0; i < 9; i++) {
-        let name = data.restaurants[i].restaurant.name;
+        let rName = data.restaurants[i].restaurant.name;
         let url = data.restaurants[i].restaurant.url;
         let img = data.restaurants[i].restaurant.featured_image;
         let avgCost = data.restaurants[i].restaurant.average_cost_for_two;
@@ -22,19 +18,18 @@ function renderList(data){
         let id = data.restaurants[i].restaurant.id;
         // console.log("img",img);
         var item = '<div class="col-lg-4 col-md-6 mb-4">'+
-        '            <div class="card h-100">'+
+        '            <div class="card h-50">'+
         '              <a class="redirect" href="/users/restaurant?id='+id+'><img class="card-img-top" src="'+img+'"></a>'+
         '              <div class="card-body">'+
         '                <h4 class="card-title">'+
-        '                  <a class="redirect" href="/users/restaurant?id='+id+'">'+name+'</a>'+
+        '                  <a class="redirect" href="/users/restaurant?id='+id+'">'+rName+'</a>'+
         '                </h4>'+
-        '<p>Ratings: '+rating+ '</p>'+
         '                <p>Price for two: Rs.' +avgCost+'/-'+'</p>'+
-        '                <p class="card-text">'+ cuisines +'</p>'+
+        '                <p class="cuisinesList" class="card-text">'+ cuisines +'</p>'+
         '<a href="'+url+'">Open in Zomato</a>'+
         '              </div>'+
         '              <div class="card-footer">'+
-        '                <small class="text-muted">★ ★ ★ ★ ☆</small>'+
+        '                <small class="text-muted">Ratings: '+rating+'</small>'+
         '              </div>'+
         '            </div>'+
         '          </div>';

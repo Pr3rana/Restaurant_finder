@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const User = require('../models/schema');
+const User = require('../models/usersSchema');
+const Review = require('../models/reviewsSchema')
 const ZomatoApi = require('../controllers/zomato');
 
 /* GET users listing. */
@@ -10,11 +11,7 @@ router.post('/signup', function(req, res, next) {
     res.send(data);  
   });
 });
-router.get('/signin.json', function(req, res, next) {
-  ZomatoApi(req.query).then((data) => {
-    res.json(data)
-  })
-});
+
 router.post('/signin', function(req, res, next) {
     //res.send(req.body);
     User.findOne(req.body, function(error, user) {
@@ -26,12 +23,22 @@ router.post('/signin', function(req, res, next) {
       } 
       if (user && user.password === req.body.password){
         console.log('User and password is correct');
-          res.render('login',{userData: user});
+        ZomatoApi(req.query).then((data) => {
+          res.render('login',{restaurantData: data,users:user});
+        })
+          
       } else {
         console.log("Credentials wrong");
         res.render('error',{data: "Login invalid"});
       }   
   });
+});
+router.post('/reviews', function(req, res, next) {
+  console.log("hello",req.params,req.body,req.query);
+  // Review.create(req.body).then(function(data){
+  //   res.send(data);  
+  // });
+  res.json(req.query);
 });
 
 router.get('/search',function (req,res,next) {

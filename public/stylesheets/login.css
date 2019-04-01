@@ -6,9 +6,20 @@
 body {
   padding-top: 56px;
 }
+.navbar{
+  background: #CB2F2D !important;
+  color: #33373D !important;
+}
 .redirect{
   font-size: 1rem;
   color: #3f1912;
+}
+.cuisinesList{
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+.cuisinesList:hover{
+  overflow: visible;
 }
 .searchbar{
   margin-bottom: 1rem;
