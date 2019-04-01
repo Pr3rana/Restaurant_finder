@@ -19,21 +19,23 @@ function renderList(data){
         let id = data.restaurants[i].restaurant.id;
         // console.log("img",img);
         var item = '<div class="col-lg-4 col-md-6 mb-4">'+
-        '            <div class="card h-50">'+
-        '              <a class="redirect" href="/users/restaurant?id='+id+'><img class="card-img-top" src="'+img+'"></a>'+
-        '              <div class="card-body">'+
-        '                <h4 class="card-title">'+
-        '                  <a class="redirect" href="/users/restaurant?id='+id+'">'+rName+'</a>'+
-        '                </h4>'+
-        '                <p>Price for two: Rs.' +avgCost+'/-'+'</p>'+
-        '                <p class="cuisinesList" class="card-text">'+ cuisines +'</p>'+
+        ' <div class="card">'+
+        ' <a class="redirect" href="/users/restaurant?id='+id+'">' +
+        ' <img class="card-img-top" width="252" height="156" src="' + img + '" alt="http://placehold.it/900x350"></a>'+
+        ' <div class="card-body">'+
+        ' <h4 class="card-title">'+
+        ' <a class="redirect" href="/users/restaurant?id='+id+'">'+rName+'</a>'+
+        ' </h4>'+
+        ' <p>Price for two: Rs.' +avgCost+'/-'+'</p>'+
+        '<div class="cusineWrapper">'+
+        ' <p class="cuisinesList" class="card-text">'+ cuisines +'</p></div>'+
         '<a href="'+url+'">Open in Zomato</a>'+
-        '              </div>'+
-        '              <div class="card-footer">'+
-        '                <small class="text-muted">Ratings: '+rating+'</small>'+
-        '              </div>'+
-        '            </div>'+
-        '          </div>';
+        ' </div>'+
+        ' <div class="card-footer">'+
+        ' <small class="text-muted">Ratings: '+rating+'</small>'+
+        ' </div>'+
+        ' </div>'+
+        ' </div>';
         
         listContainer.insertAdjacentHTML('afterbegin',item);
         

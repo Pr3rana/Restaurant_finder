@@ -79,7 +79,7 @@ function renderDetails(data) {
     let rating = data.user_rating.aggregate_rating;
     let altUrl = 'https://b.zmtcdn.com/data/pictures/chains/8/54148/a2bff39a00aaaa5a111012ba90d69331.jpg?output-format=webp';
     let id = data.id;
-    imgContainer.setAttribute("src",img+'900x350');
+    imgContainer.setAttribute("src",img);
     reviewForm[0].setAttribute("id",id);
     rName.innerHTML = name;
     // console.log("img",img);
@@ -115,7 +115,7 @@ function submitReview(id) {
     $.ajax({
         type: 'POST',
         url: '/users/reviews',
-        data: {id:{uNmae: comment}},
+        body: {id:{uNmae: "Prerana"}},
         success: function (data) {
             console.log('Submission was successful.');
             console.log(data);

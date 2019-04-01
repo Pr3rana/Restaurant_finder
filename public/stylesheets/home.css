@@ -10,13 +10,16 @@ body {
   background: #CB2F2D !important;
   color: #33373D !important;
 }
+.cusineWrapper{
+  height: 72px;
+}
+.cusineWrapper p{
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
 .redirect{
   font-size: 1rem;
   color: #3f1912;
-}
-.cuisinesList{
-  overflow: hidden;
-  text-overflow:ellipsis;
 }
 .cuisinesList:hover{
   overflow: visible;

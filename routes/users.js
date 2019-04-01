@@ -25,7 +25,7 @@ router.post('/signin', function(req, res, next) {
         console.log('User and password is correct');
         userInfo = user;
         ZomatoApi(req.query).then((data) => {
-          res.render('login',{restaurantData: data, users: user});
+          res.render('home',{restaurantData: data, users: user});
         })
           
       } else {
