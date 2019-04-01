@@ -106,14 +106,16 @@ function fireSubmit(){
   let id = reviewContent.getAttribute("id");
   reviewContent[0].submit(submitReview(id));
 }
-
+var uNmae = userInfo.FirstName;
+//check in jade
+document.getElementById('userName').innerHTML = "Welcome "+uNmae;
 function submitReview(id) {
     // console.log("error");
     // e.preventDefault();
     $.ajax({
         type: 'POST',
         url: '/users/reviews',
-        data: {id:{"user":comment}},
+        data: {id:{uNmae: comment}},
         success: function (data) {
             console.log('Submission was successful.');
             console.log(data);

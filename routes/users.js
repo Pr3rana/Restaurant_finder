@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const User = require('../models/usersSchema');
-const Review = require('../models/reviewsSchema')
+const User = require('../modal/usersSchema');
+const Review = require('../modal/reviewsSchema')
 const ZomatoApi = require('../controllers/zomato');
-
+var userInfo;
 /* GET users listing. */
 
 router.post('/signup', function(req, res, next) {
@@ -23,8 +23,9 @@ router.post('/signin', function(req, res, next) {
       } 
       if (user && user.password === req.body.password){
         console.log('User and password is correct');
+        userInfo = user;
         ZomatoApi(req.query).then((data) => {
-          res.render('login',{restaurantData: data,users:user});
+          res.render('login',{restaurantData: data, users: user});
         })
           
       } else {
@@ -53,9 +54,8 @@ router.get('/restaurant',function (req,res,next) {
   var restaurantData;
   ZomatoApi(null,'restaurant?res_id='+id).then((data) => {
     restaurantData = data;
-    res.render('restaurant', {
-      myVar: restaurantData
-  });
+    console.log("info",userInfo)
+    res.render('restaurant', {"myVar": restaurantData, "userInfo": userInfo});
   })
 });
 

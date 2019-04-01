@@ -1,7 +1,8 @@
 renderList(myVar);
+var uNmae = userInfo.FirstName;
 // console.log(data);
 //check in jade
-document.getElementById('userName').innerHTML = "Welcome "+userData.FirstName;
+document.getElementById('userName').innerHTML = "Welcome "+uNmae;
 function renderList(data){
     // console.log(data.restaurants[0].restaurant)
     
