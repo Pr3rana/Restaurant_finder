@@ -10,6 +10,11 @@ router.post('/signup', function(req, res, next) {
     res.send(data);  
   });
 });
+router.get('/signin.json', function(req, res, next) {
+  ZomatoApi(req.query).then((data) => {
+    res.json(data)
+  })
+});
 router.post('/signin', function(req, res, next) {
     //res.send(req.body);
     User.findOne(req.body, function(error, user) {
@@ -18,32 +23,35 @@ router.post('/signin', function(req, res, next) {
       if(error) {
         console.log('THIS IS ERROR RESPONSE')
         res.render('error',{data: error});
-        // res.json(err)
       } 
       if (user && user.password === req.body.password){
         console.log('User and password is correct');
           res.render('login',{userData: user});
-          //res.json(data)
-        //res.render('login',{data: user});
-        console.log(user);
-        //res.json(user)
       } else {
         console.log("Credentials wrong");
         res.render('error',{data: "Login invalid"});
-        //res.json({data: "Login invalid"});
       }   
   });
 });
-router.get('/signin.json', function(req, res, next) {
-  ZomatoApi(req.query).then((data) => {
+
+router.get('/search',function (req,res,next) {
+  let val = req.query.val;
+  let url = 'search?entity_id=4&entity_type=city&q='+val;
+  ZomatoApi(null,url).then((data) => {
     res.json(data)
   })
 });
-router.get('/search',function (params) {
-  ZomatoApi(req.query).then((data) => {
-    res.json(data)
+router.get('/restaurant',function (req,res,next) {
+  let id = req.query.id;
+  var restaurantData;
+  ZomatoApi(null,'restaurant?res_id='+id).then((data) => {
+    restaurantData = data;
+    res.render('restaurant', {
+      myVar: restaurantData
+  });
   })
 });
+
 
 
 module.exports = router;
