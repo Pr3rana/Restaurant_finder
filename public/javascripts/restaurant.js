@@ -67,15 +67,14 @@ function renderDetails(data) {
     listContainer.insertAdjacentHTML('afterbegin',item);
 }
 
-let restaurantId = myVar.id;
-var comment = $('#reviewContent').val();
-// reviewContent.submit(submitReview);
-var dataContent = {}
-dataContent[restaurantId] = {[uNmae]: comment}
+
 
 // var reviewForm = $('#reviewContent');
 // reviewForm.submit(getInput);
   function getInput() {
+    let restaurantId = myVar.id;
+    var comment = $('#reviewContent').val();
+    dataContent[restaurantId] = {[uNmae]: comment}
     $.ajax({
         type: 'post',
         url: '/users/reviews',
