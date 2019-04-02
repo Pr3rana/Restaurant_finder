@@ -1,63 +1,63 @@
-//- include index.html
-doctype html
-html
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    title Page Title
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    script(src='/javascripts/jquery/jquery-3.3.1.min.js')
-    link(rel='stylesheet', type='text/css', media='screen', href='/stylesheets/style.css')
-  body
-    main
-      .form
-        ul.tab-group
-          li.tab.active
-            a(href='#signup') Sign Up
-          li.tab
-            a(href='#login') Log In
-        .tab-content
-          #signup
-            h1 Sign Up for Free
-            form#signupform(action='/users/signup', method='post')
-              .top-row
-                .field-wrap
-                  label
-                    | First Name
-                    span.req *
-                  input(name='FirstName', type='text', required='', autocomplete='off')
-                .field-wrap
-                  label
-                    | Last Name
-                    span.req *
-                  input(name='LastName', type='text', required='', autocomplete='off')
-              .field-wrap
-                label
-                  | Email Address
-                  span.req *
-                input(name='Email', type='email', required='', autocomplete='off')
-              .field-wrap
-                label
-                  | Set A Password
-                  span.req *
-                input(name='Password', type='password', required='', autocomplete='off')
-              button.button.button-block(type='submit') Get Started
-          #login
-            h1 Welcome Back!
-            form#loginform(action='/users/signin', method='post')
-              .field-wrap
-                label
-                  | Email Address
-                  span.req *
-                input(name='Email', type='email', required='', autocomplete='off')
-              .field-wrap
-                label
-                  | Password
-                  span.req *
-                input(name='Password', type='password', required='', autocomplete='off')
-              p.forgot
-                a(href='#') Forgot Password?
-              button.button.button-block Log In
-        // tab-content
-        // /form
-    script(src='/javascripts/main.js')
+include index.html
+//- doctype html
+//- html
+//-   head
+//-     meta(charset='utf-8')
+//-     meta(http-equiv='X-UA-Compatible', content='IE=edge')
+//-     title Page Title
+//-     meta(name='viewport', content='width=device-width, initial-scale=1')
+//-     script(src='/javascripts/jquery/jquery-3.3.1.min.js')
+//-     link(rel='stylesheet', type='text/css', media='screen', href='/stylesheets/style.css')
+//-   body
+//-     main
+//-       .form
+//-         ul.tab-group
+//-           li.tab.active
+//-             a(href='#signup') Sign Up
+//-           li.tab
+//-             a(href='#login') Log In
+//-         .tab-content
+//-           #signup
+//-             h1 Sign Up for Free
+//-             form#signupform(action='/users/signup', method='post')
+//-               .top-row
+//-                 .field-wrap
+//-                   label
+//-                     | First Name
+//-                     span.req *
+//-                   input(name='FirstName', type='text', required='', autocomplete='off')
+//-                 .field-wrap
+//-                   label
+//-                     | Last Name
+//-                     span.req *
+//-                   input(name='LastName', type='text', required='', autocomplete='off')
+//-               .field-wrap
+//-                 label
+//-                   | Email Address
+//-                   span.req *
+//-                 input(name='Email', type='email', required='', autocomplete='off')
+//-               .field-wrap
+//-                 label
+//-                   | Set A Password
+//-                   span.req *
+//-                 input(name='Password', type='password', required='', autocomplete='off')
+//-               button.button.button-block(type='submit') Get Started
+//-           #login
+//-             h1 Welcome Back!
+//-             form#loginform(action='/users/signin', method='post')
+//-               .field-wrap
+//-                 label
+//-                   | Email Address
+//-                   span.req *
+//-                 input(name='Email', type='email', required='', autocomplete='off')
+//-               .field-wrap
+//-                 label
+//-                   | Password
+//-                   span.req *
+//-                 input(name='Password', type='password', required='', autocomplete='off')
+//-               p.forgot
+//-                 a(href='#') Forgot Password?
+//-               button.button.button-block Log In
+//-         // tab-content
+//-         // /form
+//-     script(src='/javascripts/main.js')

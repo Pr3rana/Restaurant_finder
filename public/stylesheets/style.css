@@ -53,12 +53,16 @@ a:hover {
   transition: .5s ease;
 }
 .tab-group li a:hover {
-  background: #179b77;
-  color: #ffffff;
+  background: #FEF7EA;
+  color: #33373D;
 }
 .tab-group .active a {
-  background: #1ab188;
-  color: #ffffff;
+  background: #CB2F2D;
+  color: #33373D;
+}
+.mainFooter{
+  background: #CB2F2D !important;
+  color: #33373D !important;
 }
 
 .tab-content > div:last-child {

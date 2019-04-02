@@ -6,9 +6,23 @@
 body {
   padding-top: 56px;
 }
+.navbar{
+  background: #CB2F2D !important;
+  color: #33373D !important;
+}
+.cusineWrapper{
+  height: 72px;
+}
+.cusineWrapper p{
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
 .redirect{
   font-size: 1rem;
   color: #3f1912;
+}
+.cuisinesList:hover{
+  overflow: visible;
 }
 .searchbar{
   margin-bottom: 1rem;

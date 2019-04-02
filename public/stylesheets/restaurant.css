@@ -11,7 +11,13 @@ body {
   -moz-transition: height 0.2s;
   transition: height 0.2s;
 }
-
+.navbar{
+  background: #CB2F2D !important;
+  color: #33373D !important;
+}
+.details{
+padding-bottom: 1.6rem;
+}
 .stars
 {
   margin: 20px 0;
@@ -21,4 +27,11 @@ body {
 #review{
   margin-bottom: 1.6rem;
   border: none;
+}
+.rating-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#rating-ability-wrapper{
+  margin-top: 1rem;
 }

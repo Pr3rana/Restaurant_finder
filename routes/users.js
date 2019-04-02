@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const User = require('../models/schema');
+const User = require('../modal/usersSchema');
+const Review = require('../modal/reviewsSchema')
 const ZomatoApi = require('../controllers/zomato');
-
+var userInfo;
 /* GET users listing. */
 
 router.post('/signup', function(req, res, next) {
@@ -10,13 +11,9 @@ router.post('/signup', function(req, res, next) {
     res.send(data);  
   });
 });
-router.get('/signin.json', function(req, res, next) {
-  ZomatoApi(req.query).then((data) => {
-    res.json(data)
-  })
-});
-router.post('/signin', function(req, res, next) {
-    //res.send(req.body);
+
+router.post('/home', function(req, res, next) {
+    console.log("I am here")
     User.findOne(req.body, function(error, user) {
       console.log('User found ');
       // In case the user not found   
@@ -26,12 +23,25 @@ router.post('/signin', function(req, res, next) {
       } 
       if (user && user.password === req.body.password){
         console.log('User and password is correct');
-          res.render('login',{userData: user});
+        userInfo = user;
+        ZomatoApi(req.query).then((data) => {
+          res.render('home',{restaurantData: data, users: user});
+        })
+          
       } else {
         console.log("Credentials wrong");
         res.render('error',{data: "Login invalid"});
       }   
   });
+});
+
+router.post('/reviews', function(req, res, next) {
+  // console.log("hello",req.params,req.body,req.query);
+  Review.create(req.body).then(function(data){
+    console.log("data: ",data);
+    res.send(data);  
+  });
+  // res.send(req.body); 
 });
 
 router.get('/search',function (req,res,next) {
@@ -42,13 +52,20 @@ router.get('/search',function (req,res,next) {
   })
 });
 router.get('/restaurant',function (req,res,next) {
-  let id = req.query.id;
+  console.log("hello",req.params,req.body,req.query);
+  let key = req.query.id;
   var restaurantData;
-  ZomatoApi(null,'restaurant?res_id='+id).then((data) => {
+  ZomatoApi(null,'restaurant?res_id='+key).then((data) => {
     restaurantData = data;
-    res.render('restaurant', {
-      myVar: restaurantData
-  });
+    Review.findOne({key}, function(error, reviews) {
+      console.log("reviews", reviews);
+      if(reviews){
+        console.log("reviews", reviews)
+        res.render('restaurant', {"restaurantDetails": restaurantData, "userInfo": userInfo, "reviews": reviews});
+      }
+      res.render('restaurant', {"restaurantDetails": restaurantData, "userInfo": userInfo, "reviews": [] });
+    })
+    // res.render('restaurant', {"restaurantDetails": restaurantData, "userInfo": userInfo})
   })
 });
 

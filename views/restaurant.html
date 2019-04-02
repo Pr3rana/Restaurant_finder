@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -14,8 +13,8 @@
   <link href="/javascripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="/stylesheets/page.css" rel="stylesheet">
-
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="/stylesheets/restaurant.css" rel="stylesheet">
 
 </head>
 
@@ -24,25 +23,19 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Zomato</a>
+      <a id="userName" class="navbar-brand" href="#"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+          <!-- <li class="nav-item active">
+            <a class="nav-link" onclick="setHomePage" href="/users/home">Home
               <span class="sr-only">(current)</span>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a id="signoutBtn" class="nav-link" onclick="signoutUser"  href="/">SignOut</a>
           </li>
         </ul>
       </div>
@@ -57,11 +50,6 @@
       <div class="col-lg-3">
 
         <h1 id="shopName" class="my-4"></h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
-        </div>
 
       </div>
       <!-- /.col-lg-3 -->
@@ -78,26 +66,40 @@
             </div>
           </div>
         </div>
+        <div id="restaurentDetails" class="row"></div>
         <div class="card" id="review">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                     <div class="well well-sm">
-                        <div>
-                            <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
-                        </div>
                     
-                        <div class="row" id="post-review-box" style="display:none;">
+                        <div class="row" id="post-review-box">
                             <div class="col-md-12">
-                                <form id="saveReview" accept-charset="UTF-8" action="" method="post">
-                                    <input id="ratings-hidden" name="rating" type="hidden"> 
-                                    <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-                    
-                                    <div class="text-right">
-                                        <div class="stars starrr" data-rating="0"></div>
-                                        <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                                        <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                                        <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                <form class="reviewForm" action="javascript:getInput();" method="post">
+                                    <textarea id="reviewContent"class="form-control" name="comment" placeholder="Enter your review here..." required></textarea>
+                                    <div class="text-right" style="padding-top:1rem">
+                                      <div>
+                                        <div class="form-group" id="rating-ability-wrapper">
+                                            <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
+                                            </label>
+                                            <button type="button" class="btnrating btn btn-default btn-lg" data-attr="1" id="rating-star-1">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </button>
+                                            <button type="button" class="btnrating btn btn-default btn-lg" data-attr="2" id="rating-star-2">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </button>
+                                            <button type="button" class="btnrating btn btn-default btn-lg" data-attr="3" id="rating-star-3">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </button>
+                                            <button type="button" class="btnrating btn btn-default btn-lg" data-attr="4" id="rating-star-4">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </button>
+                                            <button type="button" class="btnrating btn btn-default btn-lg" data-attr="5" id="rating-star-5">
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                        <button id="submitbtn" class="btn btn-success btn-lg" type="submit">Save</button>
                                     </div>
                                 </form>
                             </div>
@@ -108,7 +110,10 @@
                 </div>
             </div>
         </div>
-        <div id="restaurentDetails" class="row"></div>
+        <div id="reviewContainer" class="row">
+
+        </div>
+        
         <!-- /.row -->
 
       </div>
@@ -123,7 +128,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+      <p class="m-0 text-center text-white"></p>
     </div>
     <!-- /.container -->
   </footer>
@@ -131,7 +136,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/javascripts/jquery/jquery-3.3.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="/javascripts/page.js"></script>
+  <script src="/javascripts/restaurant.js"></script>
 
 </body>
 
