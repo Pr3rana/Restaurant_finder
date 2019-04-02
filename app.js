@@ -16,7 +16,7 @@ var app = express();
 // Database Name
 const dbName = 'zomato';
 // Connection URL
-const url = 'mongodb://localhost:27017/'+dbName;  
+const url = 'mongodb+srv://Prerna:<password>@cluster0-zrve6.mongodb.net/test?retryWrites=true'+dbName;  
 mongoose.connect(url, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 
