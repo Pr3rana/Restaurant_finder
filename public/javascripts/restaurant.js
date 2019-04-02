@@ -90,7 +90,7 @@ function renderDetails(data) {
         success: function (data) {
             console.log('Submission was successful.');
             // console.log(data);
-            $('orm').trigger("reset");
+            $('form').trigger("reset");
             appendReviewCard(data);
             
         },
