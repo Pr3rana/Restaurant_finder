@@ -12,7 +12,7 @@ router.post('/signup', function(req, res, next) {
   });
 });
 
-router.post('/signin', function(req, res, next) {
+router.post('/home', function(req, res, next) {
     console.log("I am here")
     User.findOne(req.body, function(error, user) {
       console.log('User found ');
@@ -36,7 +36,7 @@ router.post('/signin', function(req, res, next) {
 });
 
 router.post('/reviews', function(req, res, next) {
-  console.log("hello",req.params,req.body,req.query);
+  // console.log("hello",req.params,req.body,req.query);
   Review.create(req.body).then(function(data){
     console.log("data: ",data);
     res.send(data);  
@@ -52,14 +52,20 @@ router.get('/search',function (req,res,next) {
   })
 });
 router.get('/restaurant',function (req,res,next) {
-  let id = req.query.id;
+  console.log("hello",req.params,req.body,req.query);
+  let key = req.query.id;
   var restaurantData;
-  ZomatoApi(null,'restaurant?res_id='+id).then((data) => {
+  ZomatoApi(null,'restaurant?res_id='+key).then((data) => {
     restaurantData = data;
-    // Review.findOne(id, function(error, reviews) {
-    //   res.render('restaurant', {"myVar": restaurantData, "userInfo": userInfo, "reviews":reviews});
-    // })
-    res.render('restaurant', {"myVar": restaurantData, "userInfo": userInfo})
+    Review.findOne({key}, function(error, reviews) {
+      console.log("reviews", reviews);
+      if(reviews){
+        console.log("reviews", reviews)
+        res.render('restaurant', {"restaurantDetails": restaurantData, "userInfo": userInfo, "reviews": reviews});
+      }
+      res.render('restaurant', {"restaurantDetails": restaurantData, "userInfo": userInfo, "reviews": [] });
+    })
+    // res.render('restaurant', {"restaurantDetails": restaurantData, "userInfo": userInfo})
   })
 });
 

@@ -1,4 +1,17 @@
-
+// $(window).on('load', (function() {
+//   if (sessionStorage.getItem('status') == null){
+//     window.location.href = "/";
+//   } //redirect to page
+// }));
+$(document).on('load', (function() {
+  if (sessionStorage.getItem('status') != 'loggedIn'){
+    //redirect to page  
+    window.location.href = "/";
+  }
+  else{
+      return;
+  }
+}));
 
 jQuery(document).ready(function($){
 	    
@@ -28,7 +41,7 @@ var uName = userInfo.FirstName;
 //check in jade
 document.getElementById('userName').innerHTML = "Welcome "+ uName;
 
-renderDetails(myVar);
+renderDetails(restaurantDetails);
 function renderDetails(data) {
     var listContainer = document.getElementById('restaurentDetails');
     var imgContainer = document.getElementById('1stImage');
@@ -71,7 +84,7 @@ function renderDetails(data) {
 // reviewForm.submit(getInput);
   function getInput() {
     let formData =  JSON.parse(JSON.stringify($('form').serializeArray()));
-    let restaurantId = myVar.id;
+    let restaurantId = restaurantDetails.id;
     let comment = formData[0].value;
     let ratings = formData[1].value;
     let review = {};
@@ -83,8 +96,6 @@ function renderDetails(data) {
     ratingDetails.rating = ratings;
     dataContent.key = restaurantId;
     dataContent.value = [ratingDetails];
-    console.log("Data:", dataContent,review);
-
     $.ajax({
         type: 'post',
         url: '/users/reviews',
@@ -93,7 +104,6 @@ function renderDetails(data) {
         data: JSON.stringify(dataContent),
         success: function (data) {
             console.log('Submission was successful.');
-            console.log(data);
             $('form').trigger("reset");
             appendReviewCard(data);
             
@@ -104,9 +114,10 @@ function renderDetails(data) {
         },
     });
 }
-
+if( reviewsInfo && reviewsInfo.value){
+  appendReviewCard(reviewsInfo);
+}
 function appendReviewCard(data) {
-  console.log("review", data);
   let id = data.key;
   let value = data.value, len = value.length;
   let reviewContainer = document.getElementById('reviewContainer');
@@ -131,4 +142,7 @@ function appendReviewCard(data) {
         ' </div>';
   reviewContainer.insertAdjacentHTML('afterbegin',item);
   }
+}
+function signoutUser() {
+    sessionStorage.clear();
 }

@@ -1,4 +1,14 @@
-renderList(myVar);
+$(document).on('load', (function() {
+    if (sessionStorage.getItem('status') != 'loggedIn'){
+      //redirect to page  
+      window.location.href = "/";
+    }
+    else{
+        return;
+    }
+}));
+
+renderList(restaurantDetails);
 var uNmae = userInfo.FirstName;
 // console.log(data);
 //check in jade
@@ -64,3 +74,12 @@ search[0].addEventListener("keyup", function(event) {
         });
     }
 });
+// $("a").click(function(e){
+//     if(localStorage.getItem("status") === null) {
+//         e.preventDefault();
+//     }
+// });
+function signoutUser() {
+    console.log("signout");
+    sessionStorage.clear();
+}

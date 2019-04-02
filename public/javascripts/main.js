@@ -1,3 +1,8 @@
+
+$(window).on('load', function(){
+  sessionStorage.clear();
+});
+
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {
   
     var $this = $(this),
@@ -57,7 +62,9 @@ var logintab = $('#logintab')
         success: function (data) {
             console.log('Submission was successful.');
             console.log(data);
-            logintab.trigger( "click" );;
+            logintab.trigger( "click" );
+
+            sessionStorage.setItem('status','loggedIn');
         },
         error: function (data) {
             console.log('An error occurred.');
