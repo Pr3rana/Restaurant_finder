@@ -1,12 +1,13 @@
-$(document).on('load', (function() {
-    if (sessionStorage.getItem('status') != 'loggedIn'){
-      //redirect to page  
-      window.location.href = "/";
-    }
-    else{
-        return;
-    }
-}));
+// $(document).ready( (function() {
+//     if (sessionStorage.getItem('status') == 'loggedIn'){
+//       //redirect to page  
+//       return;
+      
+//     }
+//     else{
+//         window.location.href = "/";
+//     }
+// }));
 
 renderList(restaurantDetails);
 var uNmae = userInfo.FirstName;
@@ -82,4 +83,5 @@ search[0].addEventListener("keyup", function(event) {
 function signoutUser() {
     console.log("signout");
     sessionStorage.clear();
+    window.location.href = "/";
 }
