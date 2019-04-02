@@ -13,7 +13,7 @@ router.post('/signup', function(req, res, next) {
 });
 
 router.post('/signin', function(req, res, next) {
-    //res.send(req.body);
+    console.log("I am here")
     User.findOne(req.body, function(error, user) {
       console.log('User found ');
       // In case the user not found   
@@ -34,12 +34,14 @@ router.post('/signin', function(req, res, next) {
       }   
   });
 });
+
 router.post('/reviews', function(req, res, next) {
   console.log("hello",req.params,req.body,req.query);
   // Review.create(req.body).then(function(data){
+  //   console.log("data: ",data);
   //   res.send(data);  
   // });
-  res.json(req.query);
+  res.send(req.body); 
 });
 
 router.get('/search',function (req,res,next) {
@@ -54,7 +56,6 @@ router.get('/restaurant',function (req,res,next) {
   var restaurantData;
   ZomatoApi(null,'restaurant?res_id='+id).then((data) => {
     restaurantData = data;
-    console.log("info",userInfo)
     res.render('restaurant', {"myVar": restaurantData, "userInfo": userInfo});
   })
 });

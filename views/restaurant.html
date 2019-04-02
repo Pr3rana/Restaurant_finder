@@ -73,46 +73,19 @@
             </div>
           </div>
         </div>
+        <div id="restaurentDetails" class="row"></div>
         <div class="card" id="review">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                     <div class="well well-sm">
-                        <div>
-                            <a class="btn btn-success btn-green" href="#" id="open-review-box">Leave a Review</a>
-                        </div>
                     
-                        <div class="row" id="post-review-box" style="display:none;">
+                        <div class="row" id="post-review-box">
                             <div class="col-md-12">
-                                <form class="reviewContent" action="/users/reviews" method="post">
-                                    <input id="ratings-hidden" name="rating" type="hidden"> 
-                                    <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-                    
-                                    <div class="text-right">
-                                        <div>
-                                            <div class="form-group" id="rating-ability-wrapper">
-                                                <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
-                                                </label>
-                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="1" id="rating-star-1">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="2" id="rating-star-2">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="3" id="rating-star-3">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="4" id="rating-star-4">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="5" id="rating-star-5">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                                        <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                                        <button id="submit" class="btn btn-success btn-lg" type="submit" onclick="fireSubmit">Save</button>
+                                <form class="reviewForm" action="javascript:getInput();" method="post">
+                                    <textarea id="reviewContent"class="form-control" name="comment" placeholder="Enter your review here..." required></textarea>
+                                    <div class="text-right" style="padding-top:1rem">
+                                        <button id="submitbtn" class="btn btn-success btn-lg" type="submit">Save</button>
                                     </div>
                                 </form>
                             </div>
@@ -123,7 +96,10 @@
                 </div>
             </div>
         </div>
-        <div id="restaurentDetails" class="row"></div>
+        <div id="reviewContainer" class="row">
+
+        </div>
+        
         <!-- /.row -->
 
       </div>

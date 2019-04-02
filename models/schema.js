@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 require('mongoose-type-email');
 
-// create users Schema & model
+// create ninja Schema & model
 const usersSchema = new mongoose.Schema({
     FirstName: {
         type: String,

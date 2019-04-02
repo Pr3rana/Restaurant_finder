@@ -46,17 +46,18 @@ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
     signupForm.submit(getInput);
   var signinForm = $('#signinform');
     signinForm.submit(getInput);
-
+var logintab = $('#logintab')
   function getInput(e) {
     //console.log(e.currentTarget.attr('method'),"e");
     e.preventDefault();
     $.ajax({
         type: $(e.target).attr('method'),
         url: $(e.target).attr('action'),
-        data: e.target.serialize(),
+        data: $(e.target).serialize(),
         success: function (data) {
             console.log('Submission was successful.');
             console.log(data);
+            logintab.trigger( "click" );;
         },
         error: function (data) {
             console.log('An error occurred.');
