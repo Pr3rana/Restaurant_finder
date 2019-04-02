@@ -37,11 +37,11 @@ router.post('/signin', function(req, res, next) {
 
 router.post('/reviews', function(req, res, next) {
   console.log("hello",req.params,req.body,req.query);
-  // Review.create(req.body).then(function(data){
-  //   console.log("data: ",data);
-  //   res.send(data);  
-  // });
-  res.send(req.body); 
+  Review.create(req.body).then(function(data){
+    console.log("data: ",data);
+    res.send(data);  
+  });
+  // res.send(req.body); 
 });
 
 router.get('/search',function (req,res,next) {
@@ -56,7 +56,10 @@ router.get('/restaurant',function (req,res,next) {
   var restaurantData;
   ZomatoApi(null,'restaurant?res_id='+id).then((data) => {
     restaurantData = data;
-    res.render('restaurant', {"myVar": restaurantData, "userInfo": userInfo});
+    // Review.findOne(id, function(error, reviews) {
+    //   res.render('restaurant', {"myVar": restaurantData, "userInfo": userInfo, "reviews":reviews});
+    // })
+    res.render('restaurant', {"myVar": restaurantData, "userInfo": userInfo})
   })
 });
 

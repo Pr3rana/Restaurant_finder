@@ -24,9 +24,9 @@ jQuery(document).ready(function($){
 	
 	}));	
 });
-var uNmae = userInfo.FirstName;
+var uName = userInfo.FirstName;
 //check in jade
-document.getElementById('userName').innerHTML = "Welcome "+ uNmae;
+document.getElementById('userName').innerHTML = "Welcome "+ uName;
 
 renderDetails(myVar);
 function renderDetails(data) {
@@ -77,8 +77,12 @@ function renderDetails(data) {
     let review = {};
     review.comment = comment;
     review.rating = ratings;
-    let dataContent = {};
-    dataContent[restaurantId] = {[uNmae]: review};
+    let dataContent = {}, ratingDetails = {};
+    ratingDetails.userNmae  = uName;
+    ratingDetails.comment = comment;
+    ratingDetails.rating = ratings;
+    dataContent.key = restaurantId;
+    dataContent.value = [ratingDetails];
     console.log("Data:", dataContent,review);
 
     $.ajax({
@@ -89,7 +93,7 @@ function renderDetails(data) {
         data: JSON.stringify(dataContent),
         success: function (data) {
             console.log('Submission was successful.');
-            // console.log(data);
+            console.log(data);
             $('form').trigger("reset");
             appendReviewCard(data);
             
@@ -103,13 +107,14 @@ function renderDetails(data) {
 
 function appendReviewCard(data) {
   console.log("review", data);
-  let id = Object.keys(data)[0];
-  let uName = Object.keys(data[id]);
-  let comment = data[id][uNmae].comment;
-  let rating = data[id][uNmae].rating;
-
+  let id = data.key;
+  let value = data.value, len = value.length;
   let reviewContainer = document.getElementById('reviewContainer');
   reviewContainer.innerHTML = "";
+  for(let i=0; i< len; i++){
+  let uName = value[i].userNmae;
+  let comment = value[i].comment;
+  let rating = value[i].rating;
   var item = '<div class="col-lg-4 col-md-6 mb-4">'+
         ' <div class="card">'+
         ' <a class="redirect" href="/users/restaurant?id='+id+'">' +
@@ -125,4 +130,5 @@ function appendReviewCard(data) {
         ' </div>'+
         ' </div>';
   reviewContainer.insertAdjacentHTML('afterbegin',item);
+  }
 }

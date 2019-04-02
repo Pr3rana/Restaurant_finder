@@ -3,9 +3,13 @@ const Schema = mongoose.Schema;
 
 //create reviews Schema & model
 const reviewsSchema = new mongoose.Schema({
-    comment: {
+    key: {
         type: String,
         required: [true, 'Comment is required']
+    },
+    value: {
+        type: Object,
+        required: true
     }
 });
 
