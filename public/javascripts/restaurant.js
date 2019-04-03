@@ -145,4 +145,5 @@ function appendReviewCard(data) {
 }
 function signoutUser() {
     sessionStorage.clear();
+    
 }

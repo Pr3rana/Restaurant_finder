@@ -57,11 +57,11 @@ a:hover {
   color: #33373D;
 }
 .tab-group .active a {
-  background: #CB2F2D;
+  background: rgb(150, 69, 67);
   color: #33373D;
 }
 .mainFooter{
-  background: #CB2F2D !important;
+  background: rgb(150, 69, 67) !important;
   color: #33373D !important;
 }
 

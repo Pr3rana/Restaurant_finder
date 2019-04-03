@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var logger = require('morgan');
-
+var session     =   require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -24,6 +24,7 @@ mongoose.Promise = global.Promise;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
 app.use(bodyParser());
 app.use(bodyParser.json());
 app.use(logger('dev'));

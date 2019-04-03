@@ -1,14 +1,3 @@
-// $(document).ready( (function() {
-//     if (sessionStorage.getItem('status') == 'loggedIn'){
-//       //redirect to page  
-//       return;
-      
-//     }
-//     else{
-//         window.location.href = "/";
-//     }
-// }));
-
 renderList(restaurantDetails);
 var uNmae = userInfo.FirstName;
 // console.log(data);
@@ -75,13 +64,7 @@ search[0].addEventListener("keyup", function(event) {
         });
     }
 });
-// $("a").click(function(e){
-//     if(localStorage.getItem("status") === null) {
-//         e.preventDefault();
-//     }
-// });
 function signoutUser() {
-    console.log("signout");
     sessionStorage.clear();
-    window.location.href = "/";
+    
 }
