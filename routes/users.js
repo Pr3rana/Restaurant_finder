@@ -35,20 +35,42 @@ router.post('/signin', function(req, res, next) {
 });
 
 router.post('/reviews', function(req, res, next) {
-  // console.log("hello",req.params,req.body,req.query);
-  Review.create(req.body).then(function(data){
-    console.log("data: ",data);
-    res.send(data);  
-  });
-  // res.send(req.body); 
+  let key = req.body.key;
+  storage = req.session;
+  console.log("value: ",req.body.value)
+  if(storage.user){
+    Review.findOneAndUpdate(
+        {key}, 
+        { $push: { 
+                  value: req.body.value[0]
+                } 
+        }, { upsert: true, new: true},function(err, data){
+          console.log("myData: ",data);
+            if(err){
+              console.log('THIS IS ERROR RESPONSE')
+              res.render('error',{data: error});
+            }
+            console.log(data);
+            res.send(data);
+        })
+    }
+  else{
+    res.redirect('/')
+  } 
 });
 
 router.get('/search',function (req,res,next) {
-  let val = req.query.val;
-  let url = 'search?entity_id=4&entity_type=city&q='+val;
-  ZomatoApi(null,url).then((data) => {
-    res.json(data)
-  })
+  storage = req.session;
+  if(storage.user){
+    let val = req.query.val;
+    let url = 'search?entity_id=4&entity_type=city&q='+val;
+    ZomatoApi(null,url).then((data) => {
+      res.json(data)
+    })
+  }
+  else{
+    res.redirect('/')
+  }
 });
 router.get('/restaurant',function (req,res,next) {
   let key = req.query.id;
@@ -58,9 +80,7 @@ router.get('/restaurant',function (req,res,next) {
     ZomatoApi(null,'restaurant?res_id='+key).then((data) => {
       restaurantData = data;
       Review.findOne({key}, function(error, reviews) {
-        console.log("reviews", reviews);
         if(reviews){
-          console.log("reviews", reviews)
           res.render('restaurant', {"restaurantDetails": restaurantData, "userInfo": userInfo, "reviews": reviews});
         }
         res.render('restaurant', {"restaurantDetails": restaurantData, "userInfo": userInfo, "reviews": [] });
@@ -74,9 +94,7 @@ router.get('/restaurant',function (req,res,next) {
   
 });
 router.get('/home',function(req,res,next){
-  console.log("I am here")
   storage = req.session;
-  console.log("homeStorage: ",storage)
   if(storage.user){
     let user = storage.user;
     ZomatoApi(req.query).then((data) => {

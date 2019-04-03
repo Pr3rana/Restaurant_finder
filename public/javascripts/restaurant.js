@@ -118,10 +118,14 @@ if( reviewsInfo && reviewsInfo.value){
   appendReviewCard(reviewsInfo);
 }
 function appendReviewCard(data) {
+  console.log("newdata: ",data);
   let id = data.key;
   let value = data.value, len = value.length;
   let reviewContainer = document.getElementById('reviewContainer');
-  reviewContainer.innerHTML = "";
+  if(reviewsInfo && reviewsInfo.value){
+    reviewContainer.innerHTML = "";
+  }
+  
   for(let i=0; i< len; i++){
   let uName = value[i].userNmae;
   let comment = value[i].comment;
