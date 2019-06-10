@@ -17,8 +17,6 @@
  <!-- Custom styles for this template -->
  <link href="/stylesheets/home.css" rel="stylesheet">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 </head>
 
 <body>
@@ -79,17 +77,48 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="bg-dark" style="padding-top: 1rem!important; padding-bottom: 1rem!important;">
     <div class="container">
       <p class="m-0 text-center text-white"></p>
     </div>
     <!-- /.container -->
+   <!-- BoldChat Live Chat Button HTML v5.00 (Type=Web,ChatButton=test_button01,Website=My Website) -->
+<div style="text-align: right; white-space: nowrap;">
+    <script type="text/javascript">
+      var bccbId = Math.random(); document.write(unescape('%3Cdiv id=' + bccbId + '%3E%3C/div%3E'));
+      window._bcvma = window._bcvma || [];
+      _bcvma.push(["setAccountID", "637355371700077209"]);
+      _bcvma.push(["setParameter", "WebsiteID", "633249456295578667"]);
+      _bcvma.push(["addStatic", {type: "chat", bdid: "633255311819875841", id: bccbId}]);
+      var bcLoad = function(){
+        if(window.bcLoaded) return; window.bcLoaded = true;
+        var vms = document.createElement("script"); vms.type = "text/javascript"; vms.async = true;
+        vms.src = ('https:'==document.location.protocol?'https://':'http://') + "vmss.boldchat.com/aid/637355371700077209/bc.vms4/vms.js";
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(vms, s);
+      };
+      if(window.pageViewer && pageViewer.load) pageViewer.load();
+      else if(document.readyState=="complete") bcLoad();
+      else if(window.addEventListener) window.addEventListener('load', bcLoad, false);
+      else window.attachEvent('onload', bcLoad);
+    </script>
+     <span style="font-family: Arial; font-size: 8pt; color: black;"><a href="http://www.boldchat.com" style="text-decoration: none; color: black;">Live chat</a> by BoldChat</span>
+    </div>
+    <!-- /BoldChat Live Chat Button HTML v5.00 -->
+       
   </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="/javascripts/jquery/jquery-3.3.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="/javascripts/home.js"></script>
+    <script>
+        setTimeout(() => {
+          let imgSrc = $('.bcStatic').find('img').attr('src');
+                if(imgSrc == "http://images.boldchat.com/ext/images/buttons/chat/gallery/Button_Crimson_Shaded_1B.png"){
+                  $('.bcStatic').css('pointer-events', 'none')
+                }
+        }, 2000);
+      </script>
 
 </body>
 
